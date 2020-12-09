@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ContentView: View {
     
     @State var weatherDetail: OpenWeather.WeatherDetail
     
     @State private var selectedUnit = unitOfTemperature.Celsius
-    
+        
     var body: some View {
+         
         VStack {
             
             VStack(alignment: .leading) {
@@ -25,7 +27,13 @@ struct ContentView: View {
                 let symbol = Weather.symbolOfUnitOfTemperature(unit: selectedUnit)
 
                 HStack {
-                    Text("☁️")
+                    let imageUrl = URL(string: "https://openweathermap.org/img/wn/\(weatherDetail.weatherIcon)@2x.png")
+                    
+                    WebImage(url: imageUrl, options: .refreshCached)
+                        .placeholder{ Text("☁️") }
+                        .frame(width: 48, height: 48, alignment: .center)
+                    
+                    //Image(systemName: "heart.fill")
                     Text("\(temperatureWithSelectedUnit, specifier: "%.2f")\(symbol)")
                 }
                     .padding(.vertical, 10.0)
@@ -56,3 +64,12 @@ struct ContentView: View {
     
 }
 
+
+
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        let weatherDetail = OpenWeather.WeatherDetail()
+        ContentView(weatherDetail: weatherDetail)
+    }
+}

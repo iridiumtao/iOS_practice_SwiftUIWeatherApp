@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 // ViewModel
 class Weather: ObservableObject {
     
     static let apiURL = "https://api.openweathermap.org/data/2.5/weather"
-    static let query = "taichung"
+    static let query = "taipei"
     
     private var weather = OpenWeather()
     
@@ -22,7 +23,7 @@ class Weather: ObservableObject {
         
         let jsonURLString = "\(apiURL)?q=\(query)&appid=\(apiKey)"
         // make URL
-        guard let url = URL(string: jsonURLString) else { return }
+        guard let url = URL(string: jsonURLString) else { print("哭啊"); return }
 
         var weatherRaw: OpenWeatherJson? = nil
         // create a session
@@ -91,4 +92,3 @@ class Weather: ObservableObject {
     }
 
 }
-

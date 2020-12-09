@@ -29,7 +29,7 @@ struct OpenWeather {
     struct WeatherDetail {
         var city: String = "default"
         var countryCode: String = "default"
-        var weatherIcon: String = "default"
+        var weatherIcon: String = "02d"
         var temperature: Double = 0.0
         var feelsLikeTemperature: Double = 0.0
         var description: String = "default"

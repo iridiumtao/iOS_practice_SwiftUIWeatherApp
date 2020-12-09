@@ -1,0 +1,6 @@
+framework module Pods_iOS_practice_SwiftUIWeather {
+  umbrella header "Pods-iOS_practice_SwiftUIWeather-umbrella.h"
+
+  export *
+  module * { export * }
+}
