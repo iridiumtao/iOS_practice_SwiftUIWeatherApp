@@ -12,11 +12,10 @@ import Combine
 class Weather: ObservableObject {
     
     static let apiURL = "https://api.openweathermap.org/data/2.5/weather"
-    static let query = "taipei"
     
     private var weather = OpenWeather()
     
-    static func requestWeatherData(completion: @escaping (OpenWeather.WeatherDetail) -> ()){
+    static func requestWeatherData(query: String = "taipei", completion: @escaping (OpenWeather.WeatherDetail) -> ()){
         
         let path = Bundle.main.path(forResource: "apikey", ofType: "txt") // file path for file "data.txt"
         let apiKey = try! String(contentsOfFile: path!, encoding: String.Encoding.utf8)
