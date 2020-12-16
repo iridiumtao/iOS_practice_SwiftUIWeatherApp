@@ -12,7 +12,21 @@ struct CityDetail: View {
     var city: City
     var unit: unitOfTemperature
     
+    
+    //時間和格式
+    var taskDateFormat: DateFormatter{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY/MM/dd HH:mm"
+        return formatter
+    }
+    
     @State var weatherDetail: OpenWeather.WeatherDetail
+    
+    // 用來dismiss的東西
+    @Environment(\.presentationMode) var presentation
+    
+//    @Binding var showSecond: Bool
+//    @Binding var showThird: Bool
     
     var body: some View {
         ScrollView {
@@ -41,8 +55,16 @@ struct CityDetail: View {
                     .padding(.vertical, 10.0)
                     .font(.system(size: 40))
                 
+                Text("\(weatherDetail.time, formatter: taskDateFormat)")
                 let feelsLikeWithSelectedUnit = Weather.changeUnitFromKelvin(temperature: weatherDetail.feelsLikeTemperature, unit: unit)
                 Text("Feels like \(feelsLikeWithSelectedUnit, specifier: "%.2f")\(symbol). \(weatherDetail.description)")
+                Text("Humidity: \(weatherDetail.humidity, specifier: "%.f")")
+                
+                NavigationLink(destination: ContentView(weatherDetail: OpenWeather.WeatherDetail())) {
+                    Text("Back")
+                   
+                }
+                
             }
             .onAppear() {
                 Weather.requestWeatherData(cityId: city.id){ (weatherData) in
@@ -52,6 +74,19 @@ struct CityDetail: View {
         }
         .navigationTitle(city.city)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(
+            trailing:
+                Button("Select") {
+                    print("select")
+                    
+//                    DispatchQueue.main.async {
+//                            self.showThird = false
+//                            DispatchQueue.main.async {
+//                                self.showSecond = false
+//                            }
+//                        }
+                }
+        )
     }
 }
 

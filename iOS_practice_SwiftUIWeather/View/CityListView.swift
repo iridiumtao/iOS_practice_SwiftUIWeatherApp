@@ -13,6 +13,9 @@ struct CityListView : View{
     
     var unit: unitOfTemperature
     
+//    @Binding var showSecond: Bool
+//    @Binding var showThird: Bool
+    
     var body: some View {
         
         List(cities) { city in
@@ -25,6 +28,9 @@ struct CityListView : View{
 
 struct CityListView_Previews : PreviewProvider {
     static var previews: some View {
+//        @State var showSecondPreview: Bool = false
+//        @State var showThirdPreview: Bool = false
+        
         CityListView(cities: citiesList, unit: .Celsius)
     }
 }
@@ -33,8 +39,11 @@ struct CityList: View {
     let city: City
     let unit: unitOfTemperature
     
+//    @Binding var showSecond: Bool
+//    @Binding var showThird: Bool
+
     var body: some View {
-        NavigationLink(destination: CityDetail(city: city, unit: unit, weatherDetail: OpenWeather.WeatherDetail())){
+        NavigationLink(destination: CityDetail(city: city, unit: unit, weatherDetail: OpenWeather.WeatherDetail())) {
             VStack(alignment: .leading, spacing: nil, content: {
                 if let state = city.state {
                     Text(city.city + ", " + state)

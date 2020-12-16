@@ -18,6 +18,7 @@ struct OpenWeather {
                                       weatherIcon: rawJson.weather[0].icon,
                                       temperature: rawJson.main.temp,
                                       feelsLikeTemperature: rawJson.main.feels_like,
+                                      humidity: rawJson.main.humidity,
                                       description: rawJson.weather[0].description,
                                       time: Date(timeIntervalSince1970: rawJson.dt))
     }
@@ -32,6 +33,7 @@ struct OpenWeather {
         var weatherIcon: String = "02d"
         var temperature: Double = 0.0
         var feelsLikeTemperature: Double = 0.0
+        var humidity: Double = 100
         var description: String = "default"
         var time: Date = Date()
     }
