@@ -45,7 +45,7 @@ struct CityDetail: View {
                 Text("Feels like \(feelsLikeWithSelectedUnit, specifier: "%.2f")\(symbol). \(weatherDetail.description)")
             }
             .onAppear() {
-                Weather.requestWeatherData(){ (weatherData) in
+                Weather.requestWeatherData(cityId: city.id){ (weatherData) in
                     weatherDetail = weatherData
                 }
             }

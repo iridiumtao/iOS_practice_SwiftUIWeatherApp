@@ -15,7 +15,7 @@
 		3C44133D2580C75D004B0AF4 /* UnitOfTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C44133C2580C75D004B0AF4 /* UnitOfTemperature.swift */; };
 		3C4413402580D876004B0AF4 /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3C44133F2580D876004B0AF4 /* apikey.txt */; };
 		3C9C8D8A256E38120011860F /* iOS_practice_SwiftUIWeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C8D89256E38120011860F /* iOS_practice_SwiftUIWeatherApp.swift */; };
-		3C9C8D8C256E38120011860F /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C8D8B256E38120011860F /* View.swift */; };
+		3C9C8D8C256E38120011860F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C8D8B256E38120011860F /* MainView.swift */; };
 		3C9C8D8E256E38130011860F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C9C8D8D256E38130011860F /* Assets.xcassets */; };
 		3C9C8D91256E38130011860F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C9C8D90256E38130011860F /* Preview Assets.xcassets */; };
 		3C9C8D9A256E3B170011860F /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C8D99256E3B170011860F /* Weather.swift */; };
@@ -33,7 +33,7 @@
 		3C44133F2580D876004B0AF4 /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
 		3C9C8D86256E38120011860F /* iOS_practice_SwiftUIWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_practice_SwiftUIWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C9C8D89256E38120011860F /* iOS_practice_SwiftUIWeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_practice_SwiftUIWeatherApp.swift; sourceTree = "<group>"; };
-		3C9C8D8B256E38120011860F /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		3C9C8D8B256E38120011860F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3C9C8D8D256E38130011860F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C9C8D90256E38130011860F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3C9C8D92256E38130011860F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		3CCB15E62589FD6400D5C059 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3C9C8D8B256E38120011860F /* View.swift */,
+				3C9C8D8B256E38120011860F /* MainView.swift */,
 				3C0EF1422589D4D300C43A6D /* CityListView.swift */,
 				3C0EF1492589E29200C43A6D /* CityDetail.swift */,
 				3C0EF14C2589E3F900C43A6D /* MapView.swift */,
@@ -264,7 +264,7 @@
 				3C9C8DA5256E48700011860F /* OpenWeatherJson.swift in Sources */,
 				3C0EF1432589D4D300C43A6D /* CityListView.swift in Sources */,
 				3C0EF14A2589E29200C43A6D /* CityDetail.swift in Sources */,
-				3C9C8D8C256E38120011860F /* View.swift in Sources */,
+				3C9C8D8C256E38120011860F /* MainView.swift in Sources */,
 				3C0EF14D2589E3F900C43A6D /* MapView.swift in Sources */,
 				3C9C8D8A256E38120011860F /* iOS_practice_SwiftUIWeatherApp.swift in Sources */,
 				3C9C8D9D256E3B260011860F /* OpenWeather.swift in Sources */,

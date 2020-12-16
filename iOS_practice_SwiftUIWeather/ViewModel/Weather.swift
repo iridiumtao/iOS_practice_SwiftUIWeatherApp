@@ -15,12 +15,18 @@ class Weather: ObservableObject {
     
     private var weather = OpenWeather()
     
-    static func requestWeatherData(query: String = "taipei", completion: @escaping (OpenWeather.WeatherDetail) -> ()){
+    static func requestWeatherData(query: String = "taipei", cityId: Int? = nil, completion: @escaping (OpenWeather.WeatherDetail) -> ()){
         
         let path = Bundle.main.path(forResource: "apikey", ofType: "txt") // file path for file "data.txt"
         let apiKey = try! String(contentsOfFile: path!, encoding: String.Encoding.utf8)
         
-        let jsonURLString = "\(apiURL)?q=\(query)&appid=\(apiKey)"
+        var jsonURLString: String
+        
+        if let cityId = cityId {
+            jsonURLString = "\(apiURL)?id=\(cityId)&appid=\(apiKey)"
+        } else {
+            jsonURLString = "\(apiURL)?q=\(query)&appid=\(apiKey)"
+        }
         // make URL
         guard let url = URL(string: jsonURLString) else { print("哭啊"); return }
 
