@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CityListView : View{
     
-    var cities: [City] = []
+    @State var cities: [City] = []
     
     var unit: unitOfTemperature
     
@@ -21,12 +21,27 @@ struct CityListView : View{
             
             List {
                 ForEach(self.cities.filter {
-                    self.searchText.isEmpty ? true : $0.city.lowercased().contains(self.searchText.lowercased())
+                    if (self.searchText.count > 2) {
+                        return $0.name.lowercased().contains(self.searchText.lowercased())
+                    } else if (self.searchText.count == 2) {
+                        return $0.country.lowercased().contains(self.searchText.lowercased())
+                    } else {
+                        return false
+                    }
+                    
                 }, id: \.self) { city in
                     CityList(city: city, unit: unit)
                 }
             }
                 .navigationBarTitle("Cities")
+                .simultaneousGesture(DragGesture().onChanged({ _ in
+                    UIApplication.shared.endEditing()
+                }))
+        }
+        .onAppear() {
+            DecodeCityList.decode() { (citiesData) in
+                cities = citiesData
+            }
         }
     }
     
@@ -34,8 +49,6 @@ struct CityListView : View{
 
 struct CityListView_Previews : PreviewProvider {
     static var previews: some View {
-//        @State var showSecondPreview: Bool = false
-//        @State var showThirdPreview: Bool = false
         
         CityListView(cities: citiesList, unit: .Celsius)
     }
@@ -51,11 +64,7 @@ struct CityList: View {
     var body: some View {
         NavigationLink(destination: CityDetail(city: city, unit: unit, weatherDetail: OpenWeather.WeatherDetail())) {
             VStack(alignment: .leading, spacing: nil, content: {
-                if let state = city.state {
-                    Text(city.city + ", " + state)
-                } else {
-                    Text(city.city)
-                }
+                Text(city.name)
                 Text(city.country)
                     .font(.subheadline)
                     .foregroundColor(.gray)
@@ -95,5 +104,13 @@ struct SearchBar: UIViewRepresentable {
 
     func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
         uiView.text = text
+    }
+}
+
+extension UIApplication {
+    
+    // 關閉鍵盤
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

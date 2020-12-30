@@ -35,7 +35,7 @@ struct CityDetail: View {
                 .frame(height: 300)
             VStack(alignment: .leading) {
    
-                Text("\(city.city), \(city.country)")
+                Text("\(city.name), \(city.country)")
                     .font(Font.largeTitle.bold())
                     
                 
@@ -67,7 +67,7 @@ struct CityDetail: View {
                 }
             }
         }
-        .navigationTitle(city.city)
+        .navigationTitle(city.name)
         .navigationBarTitleDisplayMode(.inline)
     }
 }
@@ -75,6 +75,6 @@ struct CityDetail: View {
 struct CityDetail_Previews: PreviewProvider {
     
     static var previews: some View {
-        CityDetail(city: City(id: 1665357, city: "Yujing", state: nil, country: "TW", coord: coord(lon: 120.46138, lat: 23.124929)), unit: .Celsius, weatherDetail: OpenWeather.WeatherDetail())
+        CityDetail(city: City(id: 1665357, coord: coord(lon: 120.46138, lat: 23.124929), country: "TW", name: "Yujing"), unit: .Celsius, weatherDetail: OpenWeather.WeatherDetail())
     }
 }
