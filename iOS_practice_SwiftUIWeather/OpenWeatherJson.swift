@@ -23,7 +23,7 @@ struct OpenWeatherJson: Decodable {
     let cod: Int
 }
 
-struct coord: Decodable {
+struct coord: Decodable, Hashable {
     let lon: Double
     let lat: Double
 }

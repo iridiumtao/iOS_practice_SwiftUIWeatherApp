@@ -13,15 +13,21 @@ struct CityListView : View{
     
     var unit: unitOfTemperature
     
-//    @Binding var showSecond: Bool
-//    @Binding var showThird: Bool
+    @State private var searchText : String = ""
     
     var body: some View {
-        
-        List(cities) { city in
-            CityList(city: city, unit: unit)
-        }.navigationBarTitle("Cities")
-        
+        VStack {
+            SearchBar(text: $searchText)
+            
+            List {
+                ForEach(self.cities.filter {
+                    self.searchText.isEmpty ? true : $0.city.lowercased().contains(self.searchText.lowercased())
+                }, id: \.self) { city in
+                    CityList(city: city, unit: unit)
+                }
+            }
+                .navigationBarTitle("Cities")
+        }
     }
     
 }
@@ -59,3 +65,35 @@ struct CityList: View {
     }
 }
 
+struct SearchBar: UIViewRepresentable {
+
+    @Binding var text: String
+
+    class Coordinator: NSObject, UISearchBarDelegate {
+
+        @Binding var text: String
+
+        init(text: Binding<String>) {
+            _text = text
+        }
+
+        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+            text = searchText
+        }
+    }
+
+    func makeCoordinator() -> SearchBar.Coordinator {
+        return Coordinator(text: $text)
+    }
+
+    func makeUIView(context: UIViewRepresentableContext<SearchBar>) -> UISearchBar {
+        let searchBar = UISearchBar(frame: .zero)
+        searchBar.delegate = context.coordinator
+        searchBar.searchBarStyle = .minimal
+        return searchBar
+    }
+
+    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<SearchBar>) {
+        uiView.text = text
+    }
+}

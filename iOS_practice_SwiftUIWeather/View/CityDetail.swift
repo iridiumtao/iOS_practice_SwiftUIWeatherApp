@@ -59,12 +59,7 @@ struct CityDetail: View {
                 let feelsLikeWithSelectedUnit = Weather.changeUnitFromKelvin(temperature: weatherDetail.feelsLikeTemperature, unit: unit)
                 Text("Feels like \(feelsLikeWithSelectedUnit, specifier: "%.2f")\(symbol). \(weatherDetail.description)")
                 Text("Humidity: \(weatherDetail.humidity, specifier: "%.f")")
-                
-                NavigationLink(destination: ContentView(weatherDetail: OpenWeather.WeatherDetail())) {
-                    Text("Back")
-                   
-                }
-                
+
             }
             .onAppear() {
                 Weather.requestWeatherData(cityId: city.id){ (weatherData) in
@@ -74,19 +69,6 @@ struct CityDetail: View {
         }
         .navigationTitle(city.city)
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarItems(
-            trailing:
-                Button("Select") {
-                    print("select")
-                    
-//                    DispatchQueue.main.async {
-//                            self.showThird = false
-//                            DispatchQueue.main.async {
-//                                self.showSecond = false
-//                            }
-//                        }
-                }
-        )
     }
 }
 
