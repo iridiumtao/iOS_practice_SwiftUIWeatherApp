@@ -54,7 +54,7 @@ struct ContentView: View {
                         Text("Humidity: \(weatherDetail.humidity, specifier: "%.f")")
                     }
                 }
-                .foregroundColor(Color.black)
+                .foregroundColor(Color.primary)
                 
                 Picker(selection: $selectedUnit, label: Text("Unit of Temperature"), content: {
                     let units = unitOfTemperature.allCases
@@ -65,7 +65,7 @@ struct ContentView: View {
                 })
                 
             }.onAppear() {
-                Weather.requestWeatherData(){ (weatherData) in
+                Weather.requestWeatherData(cityId: DefaultWeather.getDefault()){ (weatherData) in
                     weatherDetail = weatherData
                 }
             }

@@ -12,6 +12,7 @@ struct CityDetail: View {
     var city: City
     var unit: unitOfTemperature
     
+    @State private var showAlert = false
     
     //時間和格式
     var taskDateFormat: DateFormatter{
@@ -59,13 +60,24 @@ struct CityDetail: View {
                 let feelsLikeWithSelectedUnit = Weather.changeUnitFromKelvin(temperature: weatherDetail.feelsLikeTemperature, unit: unit)
                 Text("Feels like \(feelsLikeWithSelectedUnit, specifier: "%.2f")\(symbol). \(weatherDetail.description)")
                 Text("Humidity: \(weatherDetail.humidity, specifier: "%.f")")
-
             }
             .onAppear() {
                 Weather.requestWeatherData(cityId: city.id){ (weatherData) in
                     weatherDetail = weatherData
                 }
             }
+            VStack(alignment: .center) {
+                Spacer(minLength: 10)
+                Button("Set as Default City") {
+                    print("set \(city.name)")
+                    showAlert = true
+                    DefaultWeather.setDefault(key: DefaultsKeys.city, cityID: city.id)
+                }.alert(isPresented: $showAlert, content: { () -> Alert in
+                    return Alert(title: Text("Succeed"), message: Text("\(city.name) has been set as default city."))
+                })
+
+            }
+            
         }
         .navigationTitle(city.name)
         .navigationBarTitleDisplayMode(.inline)

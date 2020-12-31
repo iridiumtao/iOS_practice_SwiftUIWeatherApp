@@ -12,6 +12,7 @@
 		3C0EF1472589D5F600C43A6D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0EF1462589D5F600C43A6D /* City.swift */; };
 		3C0EF14A2589E29200C43A6D /* CityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0EF1492589E29200C43A6D /* CityDetail.swift */; };
 		3C0EF14D2589E3F900C43A6D /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0EF14C2589E3F900C43A6D /* MapView.swift */; };
+		3C15BD95259D701300E99BE0 /* DefaultWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15BD94259D701300E99BE0 /* DefaultWeather.swift */; };
 		3C44133D2580C75D004B0AF4 /* UnitOfTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C44133C2580C75D004B0AF4 /* UnitOfTemperature.swift */; };
 		3C4413402580D876004B0AF4 /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3C44133F2580D876004B0AF4 /* apikey.txt */; };
 		3C936EE7259C6AC6005520B7 /* DecodeCitiyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C936EE6259C6AC6005520B7 /* DecodeCitiyList.swift */; };
@@ -31,6 +32,7 @@
 		3C0EF1462589D5F600C43A6D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		3C0EF1492589E29200C43A6D /* CityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetail.swift; sourceTree = "<group>"; };
 		3C0EF14C2589E3F900C43A6D /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		3C15BD94259D701300E99BE0 /* DefaultWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWeather.swift; sourceTree = "<group>"; };
 		3C44133C2580C75D004B0AF4 /* UnitOfTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitOfTemperature.swift; sourceTree = "<group>"; };
 		3C44133F2580D876004B0AF4 /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
 		3C936EE6259C6AC6005520B7 /* DecodeCitiyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeCitiyList.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				3C9C8D99256E3B170011860F /* Weather.swift */,
 				3C936EE6259C6AC6005520B7 /* DecodeCitiyList.swift */,
+				3C15BD94259D701300E99BE0 /* DefaultWeather.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C15BD95259D701300E99BE0 /* DefaultWeather.swift in Sources */,
 				3C0EF1472589D5F600C43A6D /* City.swift in Sources */,
 				3C9C8D9A256E3B170011860F /* Weather.swift in Sources */,
 				3C44133D2580C75D004B0AF4 /* UnitOfTemperature.swift in Sources */,
@@ -406,7 +410,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS_practice_SwiftUIWeather/Preview Content\"";
-				DEVELOPMENT_TEAM = 9Q7TD4AGF4;
+				DEVELOPMENT_TEAM = S8FBP4YLUA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS_practice_SwiftUIWeather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -414,7 +418,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "jerry960331.iOS-practice-SwiftUIWeather";
+				PRODUCT_BUNDLE_IDENTIFIER = com.imac.swfituitest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -429,7 +433,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iOS_practice_SwiftUIWeather/Preview Content\"";
-				DEVELOPMENT_TEAM = 9Q7TD4AGF4;
+				DEVELOPMENT_TEAM = S8FBP4YLUA;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS_practice_SwiftUIWeather/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -437,7 +441,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "jerry960331.iOS-practice-SwiftUIWeather";
+				PRODUCT_BUNDLE_IDENTIFIER = com.imac.swfituitest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

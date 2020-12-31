@@ -34,7 +34,9 @@ struct CityListView : View{
                 }
             }
                 .navigationBarTitle("Cities")
+                //.cornerRadius(25)
                 .simultaneousGesture(DragGesture().onChanged({ _ in
+                    // 如果滑動頁面就把鍵盤收回
                     UIApplication.shared.endEditing()
                 }))
         }
