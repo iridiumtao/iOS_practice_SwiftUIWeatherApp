@@ -14,6 +14,14 @@ struct CityDetail: View {
     
     @State private var showAlert = false
     
+    // onAppear 時寫入
+    @State var favoriteList: [Int] = []
+    
+    // is favorite = "star.fill"
+    // is not favorite = "star"
+    // onAppear 時寫入
+    @State private var isFavorite = false
+    
     //時間和格式
     var taskDateFormat: DateFormatter{
         let formatter = DateFormatter()
@@ -62,16 +70,43 @@ struct CityDetail: View {
                 Text("Humidity: \(weatherDetail.humidity, specifier: "%.f")")
             }
             .onAppear() {
+                // 更新favorite
+                favoriteList = DefaultWeather.getDefault(forKey: DefaultsKeys.favoriteList)  as! [Int]
+                isFavorite = favoriteList.contains(city.id)
+                print("CityDetail onAppear")
+                print(favoriteList)
+                
                 Weather.requestWeatherData(cityId: city.id){ (weatherData) in
                     weatherDetail = weatherData
                 }
-            }
+            }.navigationBarItems(
+                trailing:
+                    Button(action: {
+
+                        isFavorite = !isFavorite
+                        if isFavorite {
+                            favoriteList.append(city.id)
+                        } else {
+                            favoriteList = favoriteList.filter { $0 != city.id }
+                        }
+                        print("isFav \(isFavorite)")
+                        
+                        DefaultWeather.setDefault(value: favoriteList, forKey: DefaultsKeys.favoriteList.rawValue)
+                        
+                        print(favoriteList)
+                    }) {
+                        Image(systemName: (isFavorite ? "star.fill" : "star"))
+                    }
+            )
+            
+            
+            
             VStack(alignment: .center) {
                 Spacer(minLength: 10)
                 Button("Set as Default City") {
                     print("set \(city.name)")
                     showAlert = true
-                    DefaultWeather.setDefault(key: DefaultsKeys.city, cityID: city.id)
+                    DefaultWeather.setDefault(value: city.id, forKey: DefaultsKeys.city.rawValue)
                 }.alert(isPresented: $showAlert, content: { () -> Alert in
                     return Alert(title: Text("Succeed"), message: Text("\(city.name) has been set as default city."))
                 })

@@ -65,7 +65,7 @@ struct ContentView: View {
                 })
                 
             }.onAppear() {
-                Weather.requestWeatherData(cityId: DefaultWeather.getDefault()){ (weatherData) in
+                Weather.requestWeatherData(cityId: DefaultWeather.getDefault(forKey: DefaultsKeys.city) as? Int){ (weatherData) in
                     weatherDetail = weatherData
                 }
             }

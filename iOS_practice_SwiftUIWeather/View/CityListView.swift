@@ -13,18 +13,24 @@ struct CityListView : View{
     
     var unit: unitOfTemperature
     
-    @State private var searchText : String = ""
+    @State private var searchText: String = ""
+    
+    // onAppear 時寫入
+    @State var favoriteList: [Int] = []
     
     var body: some View {
         VStack {
             SearchBar(text: $searchText)
             
             List {
+                let textCount = self.searchText.count
                 ForEach(self.cities.filter {
-                    if (self.searchText.count > 2) {
+                    if (textCount > 2) {
                         return $0.name.lowercased().contains(self.searchText.lowercased())
-                    } else if (self.searchText.count == 2) {
+                    } else if (textCount == 2) {
                         return $0.country.lowercased().contains(self.searchText.lowercased())
+                    } else if (textCount == 0) {
+                        return favoriteList.contains($0.id)
                     } else {
                         return false
                     }
@@ -32,19 +38,24 @@ struct CityListView : View{
                 }, id: \.self) { city in
                     CityList(city: city, unit: unit)
                 }
+                
             }
-                .navigationBarTitle("Cities")
-                //.cornerRadius(25)
-                .simultaneousGesture(DragGesture().onChanged({ _ in
-                    // 如果滑動頁面就把鍵盤收回
-                    UIApplication.shared.endEditing()
-                }))
+            .navigationBarTitle("Cities")
+            //.cornerRadius(25)
+            .simultaneousGesture(DragGesture().onChanged({ _ in
+                // 如果滑動頁面就把鍵盤收回
+                UIApplication.shared.endEditing()
+            }))
         }
         .onAppear() {
             DecodeCityList.decode() { (citiesData) in
                 cities = citiesData
             }
+            favoriteList = DefaultWeather.getDefault(forKey: DefaultsKeys.favoriteList) as! [Int]
         }
+        //.listRowBackground(Color.white)
+        .buttonStyle(PlainButtonStyle())
+        
     }
     
 }
@@ -62,17 +73,23 @@ struct CityList: View {
     
 //    @Binding var showSecond: Bool
 //    @Binding var showThird: Bool
+    
+    @State private var selectedCity: String?
 
     var body: some View {
-        NavigationLink(destination: CityDetail(city: city, unit: unit, weatherDetail: OpenWeather.WeatherDetail())) {
-            VStack(alignment: .leading, spacing: nil, content: {
-                Text(city.name)
-                Text(city.country)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-            })
+        NavigationLink(
+            destination: CityDetail(city: city,
+                                    unit: unit,
+                                    weatherDetail: OpenWeather.WeatherDetail()),
+            tag: "\(city.id)",
+            selection: self.$selectedCity) {
+                VStack(alignment: .leading, spacing: nil, content: {
+                    Text(city.name)
+                    Text(city.country)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                })
         }
-        
     }
 }
 

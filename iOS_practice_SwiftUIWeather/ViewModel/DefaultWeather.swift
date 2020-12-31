@@ -8,7 +8,7 @@
 import Foundation
 
 class DefaultWeather {
-    static func getDefault() -> Int {
+    static func getDefault(forKey key: DefaultsKeys) -> Any {
         
         // Getting
         let defaults = UserDefaults.standard
@@ -16,28 +16,35 @@ class DefaultWeather {
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         if launchedBefore  {
             print("Not first launch.")
-            return defaults.integer(forKey: DefaultsKeys.city.rawValue)
-
         } else {
             print("First launch, setting UserDefault.")
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            setDefault(value: true, forKey: DefaultsKeys.launchedBefore.rawValue)
             
-            setDefault(key: DefaultsKeys.city, cityID: 1668341)
-            return defaults.integer(forKey: DefaultsKeys.city.rawValue)
+            setDefault(value: 1668341, forKey: DefaultsKeys.city.rawValue)
+            setDefault(value: [], forKey: DefaultsKeys.favoriteList.rawValue)
         }
         
+        switch key {
+        case .city:
+            return defaults.integer(forKey: key.rawValue)
+        case .favoriteList:
+            return defaults.array(forKey: key.rawValue) ?? []
+        case .launchedBefore:
+            return defaults.bool(forKey: key.rawValue)
+        }
     }
     
-    static func setDefault(key: DefaultsKeys, cityID: Int) {
+    static func setDefault(value: Any, forKey key: String) {
         // Setting
 
         let defaults = UserDefaults.standard
-        defaults.set(cityID, forKey: key.rawValue)
-        
+        defaults.set(value, forKey: key)
 
     }
 }
 
 enum DefaultsKeys: String {
+    case launchedBefore = "launchedBefore"
     case city = "city"
+    case favoriteList = "favoriteList"
 }
