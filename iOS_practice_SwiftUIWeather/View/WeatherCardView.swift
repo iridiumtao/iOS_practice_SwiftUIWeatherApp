@@ -14,6 +14,10 @@ struct WeatherCardView: View {
     @Binding var selectedUnit: unitOfTemperature
     // ref: https://stackoverflow.com/questions/61335321/setting-a-state-var-from-another-view-in-swiftui
     
+    
+    // dark mode or not
+    @Environment(\.colorScheme) var colorScheme
+    
     let cityID: Int
     
     var taskDateFormat: DateFormatter{
@@ -25,8 +29,14 @@ struct WeatherCardView: View {
     var body: some View {
 
         ZStack {
-            Color.white
-                .cornerRadius(8)
+            //(colorScheme == .dark ? Color.black : Color.white).cornerRadius(8)
+//            if colorScheme == .dark {
+//                Color.black.cornerRadius(8)
+//            } else {
+//                Color.white.cornerRadius(8)
+//            }
+            Color("betterPrimary").cornerRadius(8)
+                
             NavigationLink(destination: CityListView(cities: citiesList, unit: selectedUnit)) {
                 VStack(alignment: .leading) {
        
@@ -55,9 +65,8 @@ struct WeatherCardView: View {
                     Text("Humidity: \(weatherDetail.humidity, specifier: "%.f")")
                 }
             }
-            .foregroundColor(Color.primary)
-            
-
+            // 字的顏色
+            .foregroundColor(.primary)
             
         }.onAppear() {
             Weather.requestWeatherData(cityId: cityID) { (weatherData) in

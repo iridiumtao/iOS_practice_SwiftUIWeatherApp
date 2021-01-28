@@ -24,14 +24,17 @@ struct ContentView: View {
     
     @State var cityIDs: [Int] = DefaultWeather.getDefault(forKey: DefaultsKeys.favoriteList) as? [Int] ?? [1668341, 1668341]
     
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView(.horizontal) {
+                ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 15) {
                             ForEach(0 ..< cityIDs.count) { city in
                                 WeatherCardView(selectedUnit: $selectedUnit, cityID: cityIDs[city])
                                     .frame(width: screenWidth * 0.9, height: screenHeight * 0.5)
+                                    .clipped()
                                     .shadow(color: Color.primary.opacity(0.2), radius: 5, x: 0, y: 0)
                             }
                         }
@@ -50,6 +53,7 @@ struct ContentView: View {
                 cityIDs = DefaultWeather.getDefault(forKey: DefaultsKeys.favoriteList) as! [Int]
                 print(cityIDs)
             }
+            
         }
         
     }
