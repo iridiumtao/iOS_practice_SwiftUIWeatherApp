@@ -38,17 +38,17 @@ class Weather: ObservableObject {
                 print("check for error")
                 print(error!.localizedDescription)
             }
+            
             // check for 200 OK status
             guard let data = data else { return }
             do {
                 weatherRaw = try JSONDecoder().decode(OpenWeatherJson.self, from: data)
-                print("in do func")
                 if let weatherRaw = weatherRaw {
                     
                     completion(OpenWeather(rawJson: weatherRaw).weatherDetail)
                 }
             } catch let err {
-                print ("Json Err", err)
+                print ("Json Err:\n", err)
             }
             // start the session
         }.resume()

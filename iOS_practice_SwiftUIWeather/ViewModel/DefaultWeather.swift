@@ -20,15 +20,15 @@ class DefaultWeather {
             print("First launch, setting UserDefault.")
             setDefault(value: true, forKey: DefaultsKeys.launchedBefore.rawValue)
             
-            setDefault(value: [166834], forKey: DefaultsKeys.city.rawValue)
-            setDefault(value: [], forKey: DefaultsKeys.favoriteList.rawValue)
+            setDefault(value: [1668341], forKey: DefaultsKeys.city.rawValue)
+            setDefault(value: [1668341], forKey: DefaultsKeys.favoriteList.rawValue)
         }
         
         switch key {
         case .city:
             return defaults.array(forKey: key.rawValue) ?? [1668341]
         case .favoriteList:
-            return defaults.array(forKey: key.rawValue) ?? []
+            return defaults.array(forKey: key.rawValue) ?? [1668341]
         case .launchedBefore:
             return defaults.bool(forKey: key.rawValue)
         }

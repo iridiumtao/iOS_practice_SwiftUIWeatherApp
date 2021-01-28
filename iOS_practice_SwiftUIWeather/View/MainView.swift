@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct ContentView: View {
     
@@ -20,25 +19,41 @@ struct ContentView: View {
         return formatter
     }
     
-    //@State var cityIDs: [Int] = DefaultWeather.getDefault(forKey: DefaultsKeys.city) as? [Int] ?? [1668341, 1668341]
-    // just for test
-    @State var cityIDs: [Int] = [1668341, 1668355]
+    let screenHeight = UIScreen.main.bounds.height
+    let screenWidth = UIScreen.main.bounds.width
+    
+    @State var cityIDs: [Int] = DefaultWeather.getDefault(forKey: DefaultsKeys.favoriteList) as? [Int] ?? [1668341, 1668341]
     
     var body: some View {
         NavigationView {
-            ScrollView(.horizontal) {
-                    HStack(spacing: 15) {
-                        ForEach(0 ..< cityIDs.count) { city in
-                            WeatherCardView(cityID: cityIDs[city])
+            VStack {
+                ScrollView(.horizontal) {
+                        HStack(spacing: 15) {
+                            ForEach(0 ..< cityIDs.count) { city in
+                                WeatherCardView(selectedUnit: $selectedUnit, cityID: cityIDs[city])
+                                    .frame(width: screenWidth * 0.9, height: screenHeight * 0.5)
+                                    .shadow(color: Color.primary.opacity(0.2), radius: 5, x: 0, y: 0)
+                            }
                         }
+                        .padding()
                     }
-                    .padding()
-                }
+                Picker(selection: $selectedUnit, label: Text("Unit of Temperature"), content: {
+                    let units = unitOfTemperature.allCases
+
+                    ForEach(units, id: \.self) { (unit) in
+                        Text(String(describing: unit)).tag(unit)
+                    }
+                })
+            }
+            .onAppear() {
+                print("\(Date().description(with: Locale.current)): MainView on Appear")
+                cityIDs = DefaultWeather.getDefault(forKey: DefaultsKeys.favoriteList) as! [Int]
+                print(cityIDs)
+            }
         }
+        
     }
 }
-
-
 
 
 struct ContentView_Previews: PreviewProvider {

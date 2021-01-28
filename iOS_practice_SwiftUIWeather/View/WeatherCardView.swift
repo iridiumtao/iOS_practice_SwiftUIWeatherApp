@@ -11,13 +11,10 @@ import SDWebImageSwiftUI
 struct WeatherCardView: View {
     
     @State var weatherDetail = OpenWeather.WeatherDetail()
-    @State private var selectedUnit = unitOfTemperature.Celsius
+    @Binding var selectedUnit: unitOfTemperature
+    // ref: https://stackoverflow.com/questions/61335321/setting-a-state-var-from-another-view-in-swiftui
     
     let cityID: Int
-    
-    
-    let screenHeight = UIScreen.main.bounds.height
-    let screenWidth = UIScreen.main.bounds.width
     
     var taskDateFormat: DateFormatter{
         let formatter = DateFormatter()
@@ -60,21 +57,13 @@ struct WeatherCardView: View {
             }
             .foregroundColor(Color.primary)
             
-//            Picker(selection: $selectedUnit, label: Text("Unit of Temperature"), content: {
-//                let units = unitOfTemperature.allCases
-//
-//                ForEach(units, id: \.self) { (unit) in
-//                    Text(String(describing: unit)).tag(unit)
-//                }
-//            })
+
             
         }.onAppear() {
             Weather.requestWeatherData(cityId: cityID) { (weatherData) in
                 weatherDetail = weatherData
             }
-            print(cityID)
         }
-        .frame(width: screenWidth * 0.9, height: screenHeight * 0.8)
-        .shadow(color: Color.primary.opacity(0.2), radius: 5, x: 0, y: 0)
+        
     }
 }
