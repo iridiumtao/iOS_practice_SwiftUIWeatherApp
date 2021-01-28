@@ -20,13 +20,13 @@ class DefaultWeather {
             print("First launch, setting UserDefault.")
             setDefault(value: true, forKey: DefaultsKeys.launchedBefore.rawValue)
             
-            setDefault(value: 1668341, forKey: DefaultsKeys.city.rawValue)
+            setDefault(value: [166834], forKey: DefaultsKeys.city.rawValue)
             setDefault(value: [], forKey: DefaultsKeys.favoriteList.rawValue)
         }
         
         switch key {
         case .city:
-            return defaults.integer(forKey: key.rawValue)
+            return defaults.array(forKey: key.rawValue) ?? [1668341]
         case .favoriteList:
             return defaults.array(forKey: key.rawValue) ?? []
         case .launchedBefore:
@@ -43,6 +43,7 @@ class DefaultWeather {
     }
 }
 
+// 存放預設字串(defaults的類別不是從這裡設定)
 enum DefaultsKeys: String {
     case launchedBefore = "launchedBefore"
     case city = "city"

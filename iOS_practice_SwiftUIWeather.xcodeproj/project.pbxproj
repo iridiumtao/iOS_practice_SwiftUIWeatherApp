@@ -15,6 +15,7 @@
 		3C15BD95259D701300E99BE0 /* DefaultWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15BD94259D701300E99BE0 /* DefaultWeather.swift */; };
 		3C44133D2580C75D004B0AF4 /* UnitOfTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C44133C2580C75D004B0AF4 /* UnitOfTemperature.swift */; };
 		3C4413402580D876004B0AF4 /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3C44133F2580D876004B0AF4 /* apikey.txt */; };
+		3C7C729125C0255200E02FBE /* WeatherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C729025C0255200E02FBE /* WeatherCardView.swift */; };
 		3C936EE7259C6AC6005520B7 /* DecodeCitiyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C936EE6259C6AC6005520B7 /* DecodeCitiyList.swift */; };
 		3C936EEB259C6B40005520B7 /* current.city.list.min.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C936EEA259C6B40005520B7 /* current.city.list.min.json */; };
 		3C9C8D8A256E38120011860F /* iOS_practice_SwiftUIWeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9C8D89256E38120011860F /* iOS_practice_SwiftUIWeatherApp.swift */; };
@@ -35,6 +36,7 @@
 		3C15BD94259D701300E99BE0 /* DefaultWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultWeather.swift; sourceTree = "<group>"; };
 		3C44133C2580C75D004B0AF4 /* UnitOfTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitOfTemperature.swift; sourceTree = "<group>"; };
 		3C44133F2580D876004B0AF4 /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
+		3C7C729025C0255200E02FBE /* WeatherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardView.swift; sourceTree = "<group>"; };
 		3C936EE6259C6AC6005520B7 /* DecodeCitiyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeCitiyList.swift; sourceTree = "<group>"; };
 		3C936EEA259C6B40005520B7 /* current.city.list.min.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = current.city.list.min.json; sourceTree = "<group>"; };
 		3C9C8D86256E38120011860F /* iOS_practice_SwiftUIWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_practice_SwiftUIWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +115,7 @@
 				3C0EF1422589D4D300C43A6D /* CityListView.swift */,
 				3C0EF1492589E29200C43A6D /* CityDetail.swift */,
 				3C0EF14C2589E3F900C43A6D /* MapView.swift */,
+				3C7C729025C0255200E02FBE /* WeatherCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				3C0EF14D2589E3F900C43A6D /* MapView.swift in Sources */,
 				3C9C8D8A256E38120011860F /* iOS_practice_SwiftUIWeatherApp.swift in Sources */,
 				3C936EE7259C6AC6005520B7 /* DecodeCitiyList.swift in Sources */,
+				3C7C729125C0255200E02FBE /* WeatherCardView.swift in Sources */,
 				3C9C8D9D256E3B260011860F /* OpenWeather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,11 +10,8 @@ import SDWebImageSwiftUI
 
 struct ContentView: View {
     
-    @State var weatherDetail: OpenWeather.WeatherDetail
+    @State var weatherDetail = OpenWeather.WeatherDetail()
     @State private var selectedUnit = unitOfTemperature.Celsius
-    // 跳頁 dismiss 用
-//    @State var showSecond = false
-//    @State var showThird = false
     
     // 時間和格式
     var taskDateFormat: DateFormatter{
@@ -22,53 +19,21 @@ struct ContentView: View {
         formatter.dateFormat = "YYYY/MM/dd HH:mm"
         return formatter
     }
-        
+    
+    //@State var cityIDs: [Int] = DefaultWeather.getDefault(forKey: DefaultsKeys.city) as? [Int] ?? [1668341, 1668341]
+    // just for test
+    @State var cityIDs: [Int] = [1668341, 1668355]
+    
     var body: some View {
         NavigationView {
-            VStack {
-                NavigationLink(destination: CityListView(cities: citiesList, unit: selectedUnit)) {
-                    VStack(alignment: .leading) {
-           
-                        Text("\(weatherDetail.city), \(weatherDetail.countryCode)")
-                            .font(Font.largeTitle.bold())
-                        
-                        let temperatureWithSelectedUnit = Weather.changeUnitFromKelvin(temperature: weatherDetail.temperature, unit: selectedUnit)
-                        let symbol = Weather.symbolOfUnitOfTemperature(unit: selectedUnit)
-
-                        HStack {
-                            let imageUrl = URL(string: "https://openweathermap.org/img/wn/\(weatherDetail.weatherIcon)@2x.png")
-                            
-                            WebImage(url: imageUrl, options: .refreshCached)
-                                .placeholder{ Text("☁️") }
-                                .frame(width: 48, height: 48, alignment: .center)
-                            
-                            //Image(systemName: "heart.fill")
-                            Text("\(temperatureWithSelectedUnit, specifier: "%.2f")\(symbol)")
+            ScrollView(.horizontal) {
+                    HStack(spacing: 15) {
+                        ForEach(0 ..< cityIDs.count) { city in
+                            WeatherCardView(cityID: cityIDs[city])
                         }
-                            .padding(.vertical, 10.0)
-                            .font(.system(size: 40))
-                        
-                        Text("\(weatherDetail.time, formatter: taskDateFormat)")
-                        let feelsLikeWithSelectedUnit = Weather.changeUnitFromKelvin(temperature: weatherDetail.feelsLikeTemperature, unit: selectedUnit)
-                        Text("Feels like \(feelsLikeWithSelectedUnit, specifier: "%.2f")\(symbol). \(weatherDetail.description)")
-                        Text("Humidity: \(weatherDetail.humidity, specifier: "%.f")")
                     }
+                    .padding()
                 }
-                .foregroundColor(Color.primary)
-                
-                Picker(selection: $selectedUnit, label: Text("Unit of Temperature"), content: {
-                    let units = unitOfTemperature.allCases
-                    
-                    ForEach(units, id: \.self) { (unit) in
-                        Text(String(describing: unit)).tag(unit)
-                    }
-                })
-                
-            }.onAppear() {
-                Weather.requestWeatherData(cityId: DefaultWeather.getDefault(forKey: DefaultsKeys.city) as? Int){ (weatherData) in
-                    weatherDetail = weatherData
-                }
-            }
         }
     }
 }
@@ -78,7 +43,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        let weatherDetail = OpenWeather.WeatherDetail()
-        ContentView(weatherDetail: weatherDetail)
+        ContentView()
     }
 }
