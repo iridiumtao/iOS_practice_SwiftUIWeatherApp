@@ -56,8 +56,23 @@ struct ContentView: View {
                 print("`12")
                 
             }
-            
-            
+            .navigationBarItems(leading: Button(action: {}, label: {
+                Spacer(minLength: 5)
+                NavigationLink(destination: CityListView(unit: selectedUnit)) {
+                    Image(systemName: "map")
+                        .resizable()
+                        .frame(width: 24.0, height: 24.0)
+                        .foregroundColor(Color("blackAndWhite"))
+                }
+            }), trailing: Button(action: {}, label: {
+                NavigationLink(destination: CityListView(unit: selectedUnit)) {
+                    Image(systemName: "plus")
+                        .resizable()
+                        .frame(width: 24.0, height: 24.0)
+                        .foregroundColor(Color("blackAndWhite"))
+                }
+                Spacer(minLength: 5)
+            }))
         }
         
     }

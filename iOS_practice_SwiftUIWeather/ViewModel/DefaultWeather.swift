@@ -31,6 +31,10 @@ class DefaultWeather {
             return defaults.array(forKey: key.rawValue) ?? [1668341]
         case .launchedBefore:
             return defaults.bool(forKey: key.rawValue)
+//        case .cityDetail:
+//            if let data = defaults.data(forKey: key.rawValue) {
+//                NSKeyedUnarchiver.unarchivedObject(ofClasses: [City], from: data)
+//            }
         }
     }
     
@@ -39,8 +43,17 @@ class DefaultWeather {
 
         let defaults = UserDefaults.standard
         defaults.set(value, forKey: key)
-
     }
+//
+//    static func setDefault(cityDetails: [City], forKey key: String) {
+//        let defaults = UserDefaults.standard
+//        do {
+//            let encodedData: Data = try NSKeyedArchiver.archivedData(withRootObject: cityDetails, requiringSecureCoding: false)
+//            defaults.set(encodedData, forKey: key)
+//        } catch let error {
+//            print(error)
+//        }
+//    }
 }
 
 // 存放預設字串(defaults的類別不是從這裡設定)
@@ -48,4 +61,5 @@ enum DefaultsKeys: String {
     case launchedBefore = "launchedBefore"
     case city = "city"
     case favoriteList = "favoriteList"
+    //case cityDetail = "cityDetail"
 }

@@ -67,20 +67,15 @@ struct CityListView_Previews : PreviewProvider {
     }
 }
 
-struct CityList: View {
+private struct CityList: View {
     let city: City
     let unit: unitOfTemperature
-    
-//    @Binding var showSecond: Bool
-//    @Binding var showThird: Bool
     
     @State private var selectedCity: String?
 
     var body: some View {
         NavigationLink(
-            destination: CityDetail(city: city,
-                                    unit: unit,
-                                    weatherDetail: OpenWeather.WeatherDetail()),
+            destination: CityDetail(city: city, unit: unit),
             tag: "\(city.id)",
             selection: self.$selectedCity) {
                 VStack(alignment: .leading, spacing: nil, content: {

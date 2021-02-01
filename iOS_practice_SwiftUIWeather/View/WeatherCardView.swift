@@ -19,6 +19,7 @@ struct WeatherCardView: View {
     @Environment(\.colorScheme) var colorScheme
     
     let cityID: Int
+    //@State var city: City
     
     var taskDateFormat: DateFormatter{
         let formatter = DateFormatter()
@@ -29,15 +30,10 @@ struct WeatherCardView: View {
     var body: some View {
 
         ZStack {
-            //(colorScheme == .dark ? Color.black : Color.white).cornerRadius(8)
-//            if colorScheme == .dark {
-//                Color.black.cornerRadius(8)
-//            } else {
-//                Color.white.cornerRadius(8)
-//            }
             Color("betterPrimary").cornerRadius(8)
                 
-            NavigationLink(destination: CityListView(cities: citiesList, unit: selectedUnit)) {
+            //NavigationLink(destination: CityDetail(city: city, unit: selectedUnit)) {
+            NavigationLink(destination: CityListView(unit: selectedUnit)) {
                 VStack(alignment: .leading) {
        
                     Text("\(weatherDetail.city), \(weatherDetail.countryCode)")
@@ -53,7 +49,6 @@ struct WeatherCardView: View {
                             .placeholder{ Text("☁️") }
                             .frame(width: 48, height: 48, alignment: .center)
                         
-                        //Image(systemName: "heart.fill")
                         Text("\(temperatureWithSelectedUnit, specifier: "%.2f")\(symbol)")
                     }
                         .padding(.vertical, 10.0)
