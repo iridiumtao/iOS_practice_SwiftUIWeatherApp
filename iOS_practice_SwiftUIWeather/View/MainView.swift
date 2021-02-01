@@ -31,12 +31,13 @@ struct ContentView: View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 15) {
-                            ForEach(0 ..< cityIDs.count) { city in
-                                WeatherCardView(selectedUnit: $selectedUnit, cityID: cityIDs[city])
+                            ForEach(cityIDs, id: \.self) { city in
+                                WeatherCardView(selectedUnit: $selectedUnit, cityID: city)
                                     .frame(width: screenWidth * 0.9, height: screenHeight * 0.5)
                                     .clipped()
                                     .shadow(color: Color.primary.opacity(0.2), radius: 5, x: 0, y: 0)
                             }
+                            
                         }
                         .padding()
                     }
@@ -52,7 +53,10 @@ struct ContentView: View {
                 print("\(Date().description(with: Locale.current)): MainView on Appear")
                 cityIDs = DefaultWeather.getDefault(forKey: DefaultsKeys.favoriteList) as! [Int]
                 print(cityIDs)
+                print("`12")
+                
             }
+            
             
         }
         
