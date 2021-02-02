@@ -18,6 +18,8 @@
 		3C44133D2580C75D004B0AF4 /* UnitOfTemperature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C44133C2580C75D004B0AF4 /* UnitOfTemperature.swift */; };
 		3C4413402580D876004B0AF4 /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3C44133F2580D876004B0AF4 /* apikey.txt */; };
 		3C5C269E25C9837200BD751A /* MapViewMK2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5C269D25C9837200BD751A /* MapViewMK2.swift */; };
+		3C5C26A225C98D8100BD751A /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5C26A125C98D8100BD751A /* Landmark.swift */; };
+		3C5C26A525C98E8500BD751A /* LandmarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5C26A425C98E8500BD751A /* LandmarkAnnotation.swift */; };
 		3C7C729125C0255200E02FBE /* WeatherCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7C729025C0255200E02FBE /* WeatherCardView.swift */; };
 		3C936EE7259C6AC6005520B7 /* DecodeCitiyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C936EE6259C6AC6005520B7 /* DecodeCitiyList.swift */; };
 		3C936EEB259C6B40005520B7 /* current.city.list.min.json in Resources */ = {isa = PBXBuildFile; fileRef = 3C936EEA259C6B40005520B7 /* current.city.list.min.json */; };
@@ -42,6 +44,8 @@
 		3C44133C2580C75D004B0AF4 /* UnitOfTemperature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitOfTemperature.swift; sourceTree = "<group>"; };
 		3C44133F2580D876004B0AF4 /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
 		3C5C269D25C9837200BD751A /* MapViewMK2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewMK2.swift; sourceTree = "<group>"; };
+		3C5C26A125C98D8100BD751A /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
+		3C5C26A425C98E8500BD751A /* LandmarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkAnnotation.swift; sourceTree = "<group>"; };
 		3C7C729025C0255200E02FBE /* WeatherCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCardView.swift; sourceTree = "<group>"; };
 		3C936EE6259C6AC6005520B7 /* DecodeCitiyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodeCitiyList.swift; sourceTree = "<group>"; };
 		3C936EEA259C6B40005520B7 /* current.city.list.min.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = current.city.list.min.json; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 				3C9C8D99256E3B170011860F /* Weather.swift */,
 				3C936EE6259C6AC6005520B7 /* DecodeCitiyList.swift */,
 				3C15BD94259D701300E99BE0 /* DefaultWeather.swift */,
+				3C5C26A125C98D8100BD751A /* Landmark.swift */,
+				3C5C26A425C98E8500BD751A /* LandmarkAnnotation.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -302,6 +308,8 @@
 				3C0E71A825C96DAE007649DD /* MapWeatherView.swift in Sources */,
 				3C0E71A525C96D31007649DD /* LocationManager.swift in Sources */,
 				3C936EE7259C6AC6005520B7 /* DecodeCitiyList.swift in Sources */,
+				3C5C26A525C98E8500BD751A /* LandmarkAnnotation.swift in Sources */,
+				3C5C26A225C98D8100BD751A /* Landmark.swift in Sources */,
 				3C7C729125C0255200E02FBE /* WeatherCardView.swift in Sources */,
 				3C9C8D9D256E3B260011860F /* OpenWeather.swift in Sources */,
 			);

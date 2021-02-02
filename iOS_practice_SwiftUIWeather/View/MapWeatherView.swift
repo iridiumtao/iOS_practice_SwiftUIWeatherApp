@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct MapWeatherView: View{
+    
     @ObservedObject var locationManager = LocationManager()
+    @State private var landmarks: [Landmark] = [Landmark]()
+    @State private var search: String = ""
+
     var unit: unitOfTemperature
     
     var userLatitude: String {
@@ -19,31 +24,51 @@ struct MapWeatherView: View{
         return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
     }
     
-    @State private var search: String = ""
+    private func getNearByLandmarks() {
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = search
+        
+        let search = MKLocalSearch(request: request)
+        search.start { (response, error) in
+            if let response = response {
+                let mapItems = response.mapItems
+                self.landmarks = mapItems.map {
+                    Landmark(placemark: $0.placemark)
+                }
+            }
+        }
+    }
+    
     
     var body: some View {
+        
         ZStack(alignment: .top) {
-            MapViewMK2()
-                
             
+            MapViewMK2(landmarks: landmarks)
+                .ignoresSafeArea(edges: .all)
+            
+            TextField("Search", text: $search, onCommit: {
+                self.getNearByLandmarks()
+            })
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            
+            .zIndex(1)
+
             VStack() {
-                
-                TextField("Search", text: $search, onCommit: {
-                    print("searchTextField on Commit")
-                })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-                VStack {
-                    Text("location status: \(locationManager.statusString)")
-                    Text("latitude: \(userLatitude)")
-                    Text("longitude: \(userLongitude)")
-                    
-                }
-            }.offset(y: 90)
+
             
+                Text("location status: \(locationManager.statusString)")
+                Text("latitude: \(userLatitude)")
+                Text("longitude: \(userLongitude)")
+                    
+                
+            }.offset(y: 90)
+
         }
-        .ignoresSafeArea(edges: .all)
+        
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle("Map")
         .onAppear(perform: {
             if locationManager.statusString == "notDetermined" {
                 locationManager.requestAuthorization()

@@ -28,6 +28,9 @@ class Coordinator: NSObject, MKMapViewDelegate {
 }
 
 struct MapViewMK2: UIViewRepresentable {
+    
+    let landmarks: [Landmark]
+    
     func makeUIView(context: Context) -> MKMapView {
         let map = MKMapView()
         map.showsUserLocation = true
@@ -40,6 +43,12 @@ struct MapViewMK2: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<MapViewMK2>) {
-        // something need to be done here
+        updateAnnotation(from: uiView)
+    }
+    
+    private func updateAnnotation(from mapView: MKMapView) {
+        mapView.removeAnnotations(mapView.annotations)
+        let annotations = self.landmarks.map(LandmarkAnnotation.init)
+        mapView.addAnnotations(annotations)
     }
 }
