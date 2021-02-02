@@ -16,6 +16,8 @@ struct MapWeatherView: View{
 
     var unit: unitOfTemperature
     
+    @Environment(\.scenePhase) var scenePhase
+    
     var userLatitude: String {
         return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
     }
@@ -67,13 +69,32 @@ struct MapWeatherView: View{
 
         }
         
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.automatic)
         .navigationBarTitle("Map")
+        //.navigationBarHidden(true)
+        //.navigationBarBackButtonHidden(false)
         .onAppear(perform: {
             if locationManager.statusString == "notDetermined" {
                 locationManager.requestAuthorization()
             }
             locationManager.startUpdateLocation()
+            print("appear")
+        })
+        .onDisappear(perform: {
+            locationManager.stopUpdateLocation()
+            print("disappear")
+        })
+        .onChange(of: scenePhase, perform: { newScenePhase in
+            switch newScenePhase {
+                  case .active:
+                    print("App is active")
+                  case .inactive:
+                    print("App is inactive")
+                  case .background:
+                    print("App is in background")
+                  @unknown default:
+                    print("Oh - interesting: I received an unexpected new value.")
+                  }
         })
         
         
