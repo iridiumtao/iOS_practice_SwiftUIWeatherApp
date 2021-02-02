@@ -32,7 +32,7 @@ struct MapViewMK2: UIViewRepresentable {
     let landmarks: [Landmark]
     
     func makeUIView(context: Context) -> MKMapView {
-        let map = MKMapView()
+        let map = GestureRecognizableMapView()
         map.showsUserLocation = true
         map.delegate = context.coordinator
         return map
