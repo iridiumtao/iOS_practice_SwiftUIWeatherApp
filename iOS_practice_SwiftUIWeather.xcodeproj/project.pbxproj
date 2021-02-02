@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		12BCB08A56DDEA3891E7D3D7 /* Pods_iOS_practice_SwiftUIWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F42600F909A3E2F148B4B9B /* Pods_iOS_practice_SwiftUIWeather.framework */; };
+		3C0E71A525C96D31007649DD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E71A425C96D31007649DD /* LocationManager.swift */; };
+		3C0E71A825C96DAE007649DD /* MapWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E71A725C96DAE007649DD /* MapWeatherView.swift */; };
 		3C0EF1432589D4D300C43A6D /* CityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0EF1422589D4D300C43A6D /* CityListView.swift */; };
 		3C0EF1472589D5F600C43A6D /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0EF1462589D5F600C43A6D /* City.swift */; };
 		3C0EF14A2589E29200C43A6D /* CityDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0EF1492589E29200C43A6D /* CityDetail.swift */; };
@@ -29,6 +31,8 @@
 
 /* Begin PBXFileReference section */
 		0F42600F909A3E2F148B4B9B /* Pods_iOS_practice_SwiftUIWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_practice_SwiftUIWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C0E71A425C96D31007649DD /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		3C0E71A725C96DAE007649DD /* MapWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWeatherView.swift; sourceTree = "<group>"; };
 		3C0EF1422589D4D300C43A6D /* CityListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListView.swift; sourceTree = "<group>"; };
 		3C0EF1462589D5F600C43A6D /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		3C0EF1492589E29200C43A6D /* CityDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetail.swift; sourceTree = "<group>"; };
@@ -64,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C0E71AB25C9804B007649DD /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				3C0E71A425C96D31007649DD /* LocationManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		3C9C8D7D256E38120011860F = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +103,7 @@
 				3CCB15E62589FD6400D5C059 /* View */,
 				3CCB15E72589FD9400D5C059 /* ViewModel */,
 				3CCB15E82589FDA200D5C059 /* Model */,
+				3C0E71AB25C9804B007649DD /* Manager */,
 				3C9C8D8D256E38130011860F /* Assets.xcassets */,
 				3C9C8D92256E38130011860F /* Info.plist */,
 				3C9C8D8F256E38130011860F /* Preview Content */,
@@ -116,6 +129,7 @@
 				3C0EF1492589E29200C43A6D /* CityDetail.swift */,
 				3C0EF14C2589E3F900C43A6D /* MapView.swift */,
 				3C7C729025C0255200E02FBE /* WeatherCardView.swift */,
+				3C0E71A725C96DAE007649DD /* MapWeatherView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -281,6 +295,8 @@
 				3C9C8D8C256E38120011860F /* MainView.swift in Sources */,
 				3C0EF14D2589E3F900C43A6D /* MapView.swift in Sources */,
 				3C9C8D8A256E38120011860F /* iOS_practice_SwiftUIWeatherApp.swift in Sources */,
+				3C0E71A825C96DAE007649DD /* MapWeatherView.swift in Sources */,
+				3C0E71A525C96D31007649DD /* LocationManager.swift in Sources */,
 				3C936EE7259C6AC6005520B7 /* DecodeCitiyList.swift in Sources */,
 				3C7C729125C0255200E02FBE /* WeatherCardView.swift in Sources */,
 				3C9C8D9D256E3B260011860F /* OpenWeather.swift in Sources */,

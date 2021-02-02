@@ -58,7 +58,7 @@ struct ContentView: View {
             }
             .navigationBarItems(leading: Button(action: {}, label: {
                 Spacer(minLength: 5)
-                NavigationLink(destination: CityListView(unit: selectedUnit)) {
+                NavigationLink(destination: MapWeatherView(unit: selectedUnit)) {
                     Image(systemName: "map")
                         .resizable()
                         .frame(width: 24.0, height: 24.0)
