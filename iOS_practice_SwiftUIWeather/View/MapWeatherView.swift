@@ -10,35 +10,48 @@ import SwiftUI
 struct MapWeatherView: View{
     @ObservedObject var locationManager = LocationManager()
     var unit: unitOfTemperature
-
+    
     var userLatitude: String {
         return "\(locationManager.lastLocation?.coordinate.latitude ?? 0)"
     }
-
+    
     var userLongitude: String {
         return "\(locationManager.lastLocation?.coordinate.longitude ?? 0)"
     }
     
     @State private var search: String = ""
-
+    
     var body: some View {
-        VStack {
+        ZStack(alignment: .top) {
+            MapViewMK2()
+                
             
-            ZStack {
-                Text("location status: \(locationManager.statusString)")
-                HStack {
+            VStack() {
+                
+                TextField("Search", text: $search, onCommit: {
+                    print("searchTextField on Commit")
+                })
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                VStack {
+                    Text("location status: \(locationManager.statusString)")
                     Text("latitude: \(userLatitude)")
                     Text("longitude: \(userLongitude)")
+                    
                 }
-            }
-        }.onAppear(perform: {
+            }.offset(y: 90)
+            
+        }
+        .ignoresSafeArea(edges: .all)
+        .onAppear(perform: {
             if locationManager.statusString == "notDetermined" {
                 locationManager.requestAuthorization()
             }
             locationManager.startUpdateLocation()
         })
         
-
+        
     }
     
 }
@@ -46,5 +59,6 @@ struct MapWeatherView: View{
 struct MapWeatherView_Previews: PreviewProvider {
     static var previews: some View {
         MapWeatherView(unit: unitOfTemperature.Celsius)
+            
     }
 }
